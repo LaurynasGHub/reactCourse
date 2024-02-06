@@ -1,0 +1,27 @@
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem;
+  background: var(--blue-bg);
+  color: var(--light-font);
+
+  ul {
+    display: flex;
+    list-style: none;
+    gap: 2rem;
+
+    li {
+      cursor: pointer;
+      transition: all 0.2s ease;
+
+      & hover {
+        color: var(--teal-200);
+      }
+
+      & active {
+        color: var(--teal-300);
+      }
+    }
+  }
+}
