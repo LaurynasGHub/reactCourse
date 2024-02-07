@@ -1,7 +1,9 @@
 .nav-container {
+  // width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 2rem;
   padding: 2rem 2rem;
   background: var(--blue-bg);
   color: var(--light-font);
@@ -14,14 +16,13 @@
     li {
       cursor: pointer;
       transition: all 0.2s ease;
+    }
+    & :hover {
+      color: var(--teal-200);
+    }
 
-      & hover {
-        color: var(--teal-200);
-      }
-
-      & active {
-        color: var(--teal-300);
-      }
+    & :active {
+      color: var(--teal-300);
     }
   }
 }

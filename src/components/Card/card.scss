@@ -1,0 +1,28 @@
+.card {
+  * {
+    // margin: 0.5rem;
+  }
+  h3 {
+    // padding: 1rem;
+    width: 80%;
+  }
+
+  p {
+    height: 6rem;
+    // width: 80%;
+  }
+  background: rgb(137, 214, 214);
+  height: 100%;
+  width: 19%;
+  padding: 2%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  button {
+    padding: 0.5rem 2rem;
+  }
+}
