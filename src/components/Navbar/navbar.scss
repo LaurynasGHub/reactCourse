@@ -16,13 +16,20 @@
     li {
       cursor: pointer;
       transition: all 0.2s ease;
-    }
-    & :hover {
-      color: var(--teal-200);
-    }
 
-    & :active {
-      color: var(--teal-300);
+      a {
+        text-decoration: none;
+        color: var(--light-font);
+
+        & :hover {
+          color: var(--teal-200);
+        }
+
+        &:active,
+        &.active {
+          color: var(--teal-300);
+        }
+      }
     }
   }
 }
