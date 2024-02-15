@@ -1,7 +1,7 @@
 import React from 'react';
 import Card from '../Card/Card';
 
-function MyCard({ cardData, setCardData }) {
+function Favorites({ cardData, setCardData }) {
   return (
     <main className="container">
       {cardData.map(({ title, description }) => (
@@ -18,4 +18,4 @@ function MyCard({ cardData, setCardData }) {
   );
 }
 
-export default MyCard;
+export default Favorites;
