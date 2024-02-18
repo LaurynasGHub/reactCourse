@@ -1,10 +1,10 @@
 import React from 'react';
 import Card from '../Card/Card';
 
-function Favorites({ cardData, setCardData }) {
+function Favorites({ favData, setCardData }) {
   return (
     <main className="container">
-      {cardData.map(({ title, description }) => (
+      {favData.map(({ title, description }) => (
         <Card
           key={title}
           title={title}

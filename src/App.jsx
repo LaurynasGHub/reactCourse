@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.scss';
-// import { mockData } from '../../mockData';
+
 import { mockData } from './mockData';
 //components
 import Navbar from './components/Navbar/Navbar';
@@ -10,9 +10,10 @@ import MyCard from './components/MyCard/MyCard';
 import Favorites from './components/Favorites/Favorites';
 
 function App() {
-  const [cardData, setCardData] = useState([]);
   const [data, setData] = React.useState(mockData);
-  const [favData, setFavData] = useState([]);
+  // const [favData, setFavData] = React.useState(mockData);
+  const [favCardData, setFavCardData] = useState([]);
+  const [cardData, setCardData] = useState([]);
 
   const handleAddToCard = (item) => {
     setCardData([...cardData, item]);
@@ -25,13 +26,13 @@ function App() {
   };
 
   const handleAddToFavorites = (item) => {
-    setFavData([...favData, item]);
+    setFavCardData([...data, item]);
 
-    const filteredData = data.filter(
+    const filteredFavData = data.filter(
       (dataItem) => dataItem.title !== item.title
     );
 
-    setData(filteredData);
+    setData(filteredFavData);
   };
 
   const handleRemoveFromCard = (item) => {
@@ -52,6 +53,7 @@ function App() {
         <Route
           path="/"
           element={
+            //sitoj vietoj pakeitus i handelAddToFavorites sumeta i favorites, cia kazkokios logikos reikia kur ka det?
             <Main data={data} setData={setData} setCardData={handleAddToCard} />
           }
         />
@@ -64,7 +66,10 @@ function App() {
         <Route
           path="/favorites"
           element={
-            <Favorites cardData={cardData} setCardData={handleAddToFavorites} />
+            <Favorites
+              favData={favCardData}
+              setCardData={handleAddToFavorites}
+            />
           }
         />
       </Routes>
