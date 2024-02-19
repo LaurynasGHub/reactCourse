@@ -4,6 +4,7 @@
     display: flex;
     // flex-direction: column;
     gap: 2rem;
+
     flex-wrap: wrap;
     margin: 0 auto;
   }
@@ -14,6 +15,11 @@
 }
 
 .main-container {
+  background-image: url('./Atributes/TacoBurgerBobbaTea.webp');
+  // background-position: center;
+  // background-repeat: no-repeat;
+  // background-size: cover;
+  padding-bottom: 2rem;
   .buttons {
     display: flex;
     flex-direction: row;

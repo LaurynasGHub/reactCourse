@@ -1,5 +1,8 @@
 import './main.scss';
 import { useContext } from 'react';
+import React from 'react';
+import mockData from '../../mockData';
+
 //components
 import Card from '../Card/Card';
 import SortButton from '../sortBtn/SortButton';
@@ -7,24 +10,25 @@ import { AppContext } from '../..';
 
 function Main({ setCardData, data, setData }) {
   const store = useContext(AppContext);
+  // const [btnData, setBtnData] = React.useState(mockData);
   // const [Data, setData] = useState([mockData]);
 
-  // const handleSortData = (direction) => {
-  //   const sortedData = data.toSorted((a, b) => {
-  //     let fa = a.title.toLowerCase(),
-  //       fb = b.title.toLowerCase();
+  const handleSortData = (direction) => {
+    const sortedData = data.toSorted((a, b) => {
+      let fa = a.title.toLowerCase(),
+        fb = b.title.toLowerCase();
 
-  //     if (fa < fb) return direction === 'az' ? -1 : 1;
-  //     if (fa > fb) return direction === 'az' ? 1 : -1;
-  //     return 0;
-  //   });
+      if (fa < fb) return direction === 'az' ? -1 : 1;
+      if (fa > fb) return direction === 'az' ? 1 : -1;
+      return 0;
+    });
 
-  //   setData(sortedData);
-  // };
+    setData(sortedData);
+  };
 
   return (
     <main className="main-container">
-      {/* <div className="main-action-btn">
+      <div className="main-action-btn">
         <button
           onClick={() => {
             handleSortData('az');
@@ -39,8 +43,8 @@ function Main({ setCardData, data, setData }) {
         >
           Sort Z-A
         </button>
-      </div> */}
-      <SortButton />
+      </div>
+      {/* <SortButton data={data} setData={setBtnData} /> */}
       {data.map((item) => {
         return (
           <Card

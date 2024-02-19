@@ -1,10 +1,13 @@
 import mockData from '../../mockData.js';
 import React, { useState } from 'react';
 
+import './sortButton.scss';
+
+// function SortButton(data, setData) {
 function SortButton() {
-  //   const [data, setData] = useState([mockData]);
+  const [data, setData] = useState([mockData]);
   //cant get data to sort?
-  const [data, setData] = React.useState(mockData);
+  // const [data, setData] = React.useState(mockData);
 
   const handleSortData = (direction) => {
     const sortedData = data.toSorted((a, b) => {

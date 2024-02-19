@@ -11,11 +11,11 @@ import Favorites from './components/Favorites/Favorites';
 
 function App() {
   const [data, setData] = React.useState(mockData);
-  // const [favData, setFavData] = React.useState(mockData);
   const [favCardData, setFavCardData] = useState([]);
   const [cardData, setCardData] = useState([]);
 
   const handleAddToCard = (item) => {
+    //daugtaskis yra spread operator, jis pakeicia tik pazymeta dalyka objekte, kitaip keistu visa objekta nauju objektu kuriame butu 1 verte
     setCardData([...cardData, item]);
 
     const filteredData = data.filter(
@@ -26,7 +26,7 @@ function App() {
   };
 
   const handleAddToFavorites = (item) => {
-    setFavCardData([...data, item]);
+    setFavCardData([...favCardData, item]);
 
     const filteredFavData = data.filter(
       (dataItem) => dataItem.title !== item.title
