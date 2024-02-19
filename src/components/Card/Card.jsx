@@ -1,32 +1,41 @@
 import React, { useContext } from 'react';
-import { AppContext } from '../../index';
-//components
+import { AppContext } from '../../context/AppContext';
+// components
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart } from '@fortawesome/free-solid-svg-icons';
+import Button from '../Button/Button';
 import './card.scss';
-import '../MyCard/MyCard';
-// import '../Main/Main';
 
-function Card({ title, description, setCardData, card, favorite }) {
-  const myData = useContext(AppContext);
+function Card({ title, description, handleCardButton, card }) {
+  const { favoritesData, handleAddToFavorites, handleRemoveFromFavorites } =
+    useContext(AppContext);
 
-  console.log(myData.setData);
+  const isFavorite = favoritesData.some((item) => item.title === title);
+
   const handleAddToCard = () => {
-    setCardData({ title, description });
-  };
-
-  const handleAddToFavorites = () => {
-    setCardData({ title, description });
+    handleCardButton({ title, description });
   };
 
   return (
     <div className="card">
-      <h3>{title}</h3>
+      <div className="title-container">
+        <h3>{title}</h3>
+        <FontAwesomeIcon
+          className={`favorite-icon ${
+            isFavorite ? 'favorite-icon--active' : ''
+          }`}
+          icon={faHeart}
+          onClick={() => {
+            isFavorite
+              ? handleRemoveFromFavorites({ title, description })
+              : handleAddToFavorites({ title, description });
+          }}
+        />
+      </div>
       <p>{description}</p>
-      <button onClick={handleAddToCard}>
-        {card ? 'remove from card' : 'add to card'}
-      </button>
-      <button onClick={handleAddToFavorites}>
-        {favorite ? 'remove from favorites' : 'add to favorites'}
-      </button>
+      <Button type="teal" onClick={handleAddToCard}>
+        {card ? 'remove' : 'add to cart'}
+      </Button>
     </div>
   );
 }

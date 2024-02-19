@@ -1,18 +1,18 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { handleSort } from '../../utils/sortUtils';
+import './myCart.scss';
 // components
 import Card from '../Card/Card';
 import SortButtons from '../sortBtn/SortButtons';
 
-import './main.scss';
-
-function Main() {
-  const { data, setData, handleAddToCard } = useContext(AppContext);
+function MyCard() {
+  const { cartData, setCartData, handleRemoveFromCard } =
+    useContext(AppContext);
 
   const handleSortData = (direction) => {
-    const sortedData = handleSort(data, direction);
-    setData(sortedData);
+    const sortedData = handleSort(cartData, direction);
+    setCartData(sortedData);
   };
 
   return (
@@ -21,16 +21,17 @@ function Main() {
         <SortButtons handleSortData={handleSortData} />
       </div>
 
-      {data.map((item) => (
+      {cartData.map(({ title, description }) => (
         <Card
-          key={item.title}
-          title={item.title}
-          description={item.description}
-          handleCardButton={handleAddToCard}
+          key={title}
+          title={title}
+          description={description}
+          handleCardButton={handleRemoveFromCard}
+          card={true}
         />
       ))}
     </main>
   );
 }
 
-export default Main;
+export default MyCard;

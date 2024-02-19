@@ -1,21 +1,30 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { AppContext } from '../../context/AppContext';
+import { handleSort } from '../../utils/sortUtils';
+// components
 import Card from '../Card/Card';
-import SortButton from '../sortBtn/SortButton';
-// import './favorites.scss';
-import '../MyCard/myCard.scss';
+import SortButtons from '../sortBtn/SortButtons';
 
-function Favorites({ favData, setCardData }) {
+function Favorites() {
+  const { favoritesData, setFavoritesData } = useContext(AppContext);
+
+  const handleSortData = (direction) => {
+    const sortedData = handleSort(favoritesData, direction);
+    setFavoritesData(sortedData);
+  };
+
   return (
-    <main className="container">
-      <SortButton />
-      {favData.map(({ title, description }) => (
+    <main className="main-container">
+      <div className="main-action-btn">
+        <SortButtons handleSortData={handleSortData} />
+      </div>
+
+      {favoritesData.map((item) => (
         <Card
-          key={title}
-          title={title}
-          description={description}
-          setCardData={setCardData}
-          card={true}
-          favorite={true}
+          key={item.title}
+          title={item.title}
+          description={item.description}
+          handleCardButton={() => {}}
         />
       ))}
     </main>
