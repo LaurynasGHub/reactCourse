@@ -39,6 +39,7 @@ function AppContextProvider(props) {
 
     setFavoritesData(filteredFavoritesData);
   };
+
   return (
     <AppContext.Provider
       value={{

@@ -15,16 +15,26 @@ function MyCard() {
     setCartData(sortedData);
   };
 
+  const calcPrice = cartData.reduce((prev, current) => {
+    return prev + +current.price;
+  }, 0);
+
+  // const calcPrice = (cartData) => {
+  //   let price;
+  // };
+
   return (
     <main className="main-container">
       <div className="main-action-btn">
         <SortButtons handleSortData={handleSortData} />
+        <p className="kaina">{'total : ' + calcPrice + '€'}</p>
       </div>
 
-      {cartData.map(({ title, description }) => (
+      {cartData.map(({ title, description, price }) => (
         <Card
           key={title}
           title={title}
+          price={price}
           description={description}
           handleCardButton={handleRemoveFromCard}
           card={true}

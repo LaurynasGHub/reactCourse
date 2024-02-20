@@ -25,6 +25,7 @@ function Main() {
         <Card
           key={item.title}
           title={item.title}
+          price={item.price}
           description={item.description}
           handleCardButton={handleAddToCard}
         />

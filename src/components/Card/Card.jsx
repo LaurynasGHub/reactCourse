@@ -6,14 +6,14 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import Button from '../Button/Button';
 import './card.scss';
 
-function Card({ title, description, handleCardButton, card }) {
+function Card({ title, description, handleCardButton, card, price }) {
   const { favoritesData, handleAddToFavorites, handleRemoveFromFavorites } =
     useContext(AppContext);
 
   const isFavorite = favoritesData.some((item) => item.title === title);
 
   const handleAddToCard = () => {
-    handleCardButton({ title, description });
+    handleCardButton({ title, description, price });
   };
 
   return (
@@ -27,12 +27,13 @@ function Card({ title, description, handleCardButton, card }) {
           icon={faHeart}
           onClick={() => {
             isFavorite
-              ? handleRemoveFromFavorites({ title, description })
-              : handleAddToFavorites({ title, description });
+              ? handleRemoveFromFavorites({ title, description, price })
+              : handleAddToFavorites({ title, description, price });
           }}
         />
       </div>
       <p>{description}</p>
+      <h4>{'price: ' + price + '€'}</h4>
       <Button type="teal" onClick={handleAddToCard}>
         {card ? 'remove' : 'add to cart'}
       </Button>

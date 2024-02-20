@@ -23,6 +23,7 @@ function Favorites() {
         <Card
           key={item.title}
           title={item.title}
+          price={item.price}
           description={item.description}
           handleCardButton={() => {}}
         />
