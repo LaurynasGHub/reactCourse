@@ -17,9 +17,9 @@ function Card({ title, description, handleCardButton, card, price }) {
   };
 
   return (
-    <div className="card">
+    <div className="itemCard">
       <div className="title-container">
-        <h3>{title}</h3>
+        <h3 className="h3Class">{title}</h3>
         <FontAwesomeIcon
           className={`favorite-icon ${
             isFavorite ? 'favorite-icon--active' : ''
@@ -32,8 +32,8 @@ function Card({ title, description, handleCardButton, card, price }) {
           }}
         />
       </div>
-      <p>{description}</p>
-      <h4>{'price: ' + price + '€'}</h4>
+      <p className="cardPar">{description}</p>
+      <h4 className="h4Class">{'price: ' + price + '€'}</h4>
       <Button type="teal" onClick={handleAddToCard}>
         {card ? 'remove' : 'add to cart'}
       </Button>

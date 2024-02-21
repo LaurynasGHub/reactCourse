@@ -1,14 +1,16 @@
-.card {
-  h3 {
+.itemCard {
+  .h3Class {
     // width: 80%;
     margin-left: 40%;
+    font-size: 1.3rem;
   }
 
-  h4 {
+  .h4Class {
     margin-bottom: 2rem;
+    font-size: 1.1rem;
   }
 
-  p {
+  .cardPar {
     height: 4rem;
     // width: 80%;
   }

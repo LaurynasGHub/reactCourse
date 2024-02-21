@@ -1,3 +1,5 @@
+// <link href="https://fonts.cdnfonts.com/css/apple-chancery" rel="stylesheet">
+
 .nav-container {
   // width: 100%;
   display: flex;
@@ -7,6 +9,10 @@
   padding: 2rem 2rem;
   background: var(--blue-bg);
   color: var(--light-font);
+
+  h1 {
+    font-family: 'Apple Chancery', sans-serif;
+  }
 
   ul {
     display: flex;
