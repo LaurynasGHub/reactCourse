@@ -5,8 +5,6 @@ import './myCart.scss';
 // components
 import Card from '../Card/Card';
 import SortButtons from '../sortBtn/SortButtons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMoneyBill } from '@fortawesome/free-solid-svg-icons';
 
 function MyCard() {
   const { cartData, setCartData, handleRemoveFromCard } =
