@@ -101,20 +101,20 @@ export const mockData = [
   },
 ];
 
-function getRandomInt() {
-  let min = 1;
-  let max = 11;
+// function getRandomInt() {
+//   let min = 1;
+//   let max = 11;
 
-  min = Math.ceil(min);
-  max = Math.floor(max);
+//   min = Math.ceil(min);
+//   max = Math.floor(max);
 
-  let generatedNumber = Math.floor(Math.random() * (max - min) + min);
+//   let generatedNumber = Math.floor(Math.random() * (max - min) + min);
 
-  // return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusiv
+//   // return Math.floor(Math.random() * (max - min) + min); // The maximum is exclusive and the minimum is inclusiv
 
-  console.log('randomNumber= ', generatedNumber);
+//   console.log('randomNumber= ', generatedNumber);
 
-  return generatedNumber;
-}
+//   return generatedNumber;
+//}
 
 export default mockData;
