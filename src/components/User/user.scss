@@ -18,3 +18,31 @@
 .offCanvas-body {
   background-color: var(--teal-100);
 }
+
+.adresoInfo {
+  p {
+    font-size: 1rem;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.kontaktiniaiDuomenys {
+  p {
+    font-size: 1rem;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+  .contactInfo {
+    font-size: 1.5rem;
+    text-decoration: underline;
+  }
+}
+
+.offCanvas-header {
+  svg {
+    margin-right: 1rem;
+  }
+}

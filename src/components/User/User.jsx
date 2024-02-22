@@ -4,6 +4,17 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import './user.scss';
 
+//components
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faAddressCard,
+  faEnvelope,
+  faPhoneVolume,
+  faUser,
+  faLocationDot,
+  faHouse,
+} from '@fortawesome/free-solid-svg-icons';
+
 function User() {
   const [user, setUser] = useState('user');
   const [loading, setLoading] = useState(true);
@@ -47,10 +58,38 @@ function User() {
           </div>
           <Offcanvas show={show} onHide={handleClose} placement="end">
             <Offcanvas.Header className="offCanvas-header" closeButton>
-              <Offcanvas.Title>{'Labas, ' + user.username}</Offcanvas.Title>
+              <FontAwesomeIcon icon={faUser} size="2x" />
+              <Offcanvas.Title className="kontaktiniaiDuomenys">
+                {'Labas, ' + user.username}
+              </Offcanvas.Title>
             </Offcanvas.Header>
             <Offcanvas.Body className="offCanvas-body">
-              Sveiki atvyke!
+              {/* <p>Welcome!</p> */}
+              <div className="adresoInfo">
+                <p>
+                  <FontAwesomeIcon icon={faLocationDot} />
+                  {user.address.city}
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faHouse} />
+                  {user.address.street}
+                </p>
+              </div>
+
+              <div className="kontaktiniaiDuomenys">
+                <p className="contactInfo">
+                  <FontAwesomeIcon icon={faAddressCard} />
+                  Contact info
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faEnvelope} />
+                  {user.email}
+                </p>
+                <p>
+                  <FontAwesomeIcon icon={faPhoneVolume} />
+                  {user.phone}
+                </p>
+              </div>
             </Offcanvas.Body>
           </Offcanvas>
         </>

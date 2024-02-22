@@ -10,7 +10,7 @@
   background: var(--blue-bg);
   color: var(--light-font);
 
-  h1 {
+  .title {
     font-family: 'Apple Chancery', sans-serif;
   }
 
@@ -22,6 +22,10 @@
     li {
       cursor: pointer;
       transition: all 0.2s ease;
+
+      .myCart {
+        margin-left: 0.5rem;
+      }
 
       a {
         text-decoration: none;
