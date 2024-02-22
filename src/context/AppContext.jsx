@@ -1,12 +1,32 @@
-import React, { useState, createContext } from 'react';
+import React, { useState, createContext, useEffect } from 'react';
 import { mockData } from '../mockData';
+import { json } from 'react-router-dom';
 
 export const AppContext = createContext();
 
 function AppContextProvider(props) {
-  const [data, setData] = useState(mockData);
-  const [cartData, setCartData] = useState([]);
-  const [favoritesData, setFavoritesData] = useState([]);
+  const [data, setData] = useState(
+    JSON.parse(localStorage.getItem('data')) || mockData
+  );
+  const [cartData, setCartData] = useState(
+    JSON.parse(localStorage.getItem('data')) || mockData
+  );
+  const [favoritesData, setFavoritesData] = useState(
+    JSON.parse(localStorage.getItem('data')) || mockData
+  );
+  // const [cartData, setCartData] = useState([]);
+  // const [favoritesData, setFavoritesData] = useState([]);
+
+  useEffect(() => {
+    console.log('useEffect triggered');
+    // localStorage.setItem('data', JSON.stringify(filteredData));
+    localStorage.setItem('data', JSON.stringify([data]));
+    localStorage.setItem('cartData', JSON.stringify(cartData));
+  }, [data, cartData]);
+
+  useEffect(() => {
+    localStorage.setItem('favoritesData', JSON.stringify(favoritesData));
+  }, [favoritesData]);
 
   const handleAddToCard = (item) => {
     setCartData([...cartData, item]);
