@@ -1,0 +1,26 @@
+.sort-btn {
+  display: flex;
+  justify-content: flex-start;
+
+  margin-top: 2rem;
+
+  width: 100%;
+
+  button {
+    margin-left: 1.4%;
+
+    background: rgb(137, 214, 214);
+    height: 3.5rem;
+    width: 8rem;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    border: none;
+
+    &:hover {
+      text-decoration: line-through;
+      text-decoration-color: red;
+      cursor: pointer;
+      // background-color: rgb(119, 160, 160);
+    }
+  }
+}
