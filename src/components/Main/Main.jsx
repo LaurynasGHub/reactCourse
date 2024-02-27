@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { AppContext } from '../../context/AppContext';
 import { handleSort } from '../../utils/sortUtils';
 // components
@@ -8,6 +8,7 @@ import SortButtons from '../sortBtn/SortButtons';
 import './main.scss';
 
 function Main() {
+  const [searchValue, setSearchValue] = useState('');
   const { data, setData, handleAddToCard } = useContext(AppContext);
 
   const handleSortData = (direction) => {
@@ -19,17 +20,32 @@ function Main() {
     <main className="main-container">
       <div className="main-action-btn">
         <SortButtons handleSortData={handleSortData} />
+
+        <div className="searchBtn">
+          <input
+            type="text"
+            placeholder="Type to search"
+            value={searchValue}
+            onChange={(e) => {
+              setSearchValue(e.target.value.toLowerCase());
+            }}
+          />
+        </div>
       </div>
 
-      {data.map((item) => (
-        <Card
-          key={item.title}
-          title={item.title}
-          price={item.price}
-          description={item.description}
-          handleCardButton={handleAddToCard}
-        />
-      ))}
+      {data
+        .filter((item) => {
+          return item.title.toLowerCase().includes(searchValue.toLowerCase());
+        })
+        .map((item) => (
+          <Card
+            key={item.title}
+            title={item.title}
+            price={item.price}
+            description={item.description}
+            handleCardButton={handleAddToCard}
+          />
+        ))}
     </main>
   );
 }

@@ -1,6 +1,5 @@
 import React, { useState, createContext, useEffect } from 'react';
 import { mockData } from '../mockData';
-import { json } from 'react-router-dom';
 
 export const AppContext = createContext();
 
@@ -9,18 +8,15 @@ function AppContextProvider(props) {
     JSON.parse(localStorage.getItem('data')) || mockData
   );
   const [cartData, setCartData] = useState(
-    JSON.parse(localStorage.getItem('data')) || mockData
+    JSON.parse(localStorage.getItem('cartData')) || []
   );
   const [favoritesData, setFavoritesData] = useState(
-    JSON.parse(localStorage.getItem('data')) || mockData
+    JSON.parse(localStorage.getItem('favoritesData')) || []
   );
-  // const [cartData, setCartData] = useState([]);
-  // const [favoritesData, setFavoritesData] = useState([]);
 
   useEffect(() => {
-    console.log('useEffect triggered');
-    // localStorage.setItem('data', JSON.stringify(filteredData));
-    localStorage.setItem('data', JSON.stringify([data]));
+    console.log('AppContextProvider useEffect');
+    localStorage.setItem('data', JSON.stringify(data));
     localStorage.setItem('cartData', JSON.stringify(cartData));
   }, [data, cartData]);
 
