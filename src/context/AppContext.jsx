@@ -1,12 +1,12 @@
 import React, { useState, createContext, useEffect } from 'react';
-import { mockData } from '../mockData';
+
+import { cfg } from '../cfg/cfg';
+// import { mockData } from '../mockData';
 
 export const AppContext = createContext();
 
 function AppContextProvider(props) {
-  const [data, setData] = useState(
-    JSON.parse(localStorage.getItem('data')) || mockData
-  );
+  const [data, setData] = useState([]);
   const [cartData, setCartData] = useState(
     JSON.parse(localStorage.getItem('cartData')) || []
   );
@@ -15,8 +15,32 @@ function AppContextProvider(props) {
   );
 
   useEffect(() => {
-    console.log('AppContextProvider useEffect');
-    localStorage.setItem('data', JSON.stringify(data));
+    const fetchData = async () => {
+      try {
+        console.log('NODE_ENV', process.env.NODE_ENV);
+        console.log('host', cfg.API.HOST);
+
+        const response = await fetch(`${cfg.API.HOST}/product/`);
+        console.log('Response', response);
+
+        const products = await response.json();
+
+        console.log('data', products);
+
+        const filteredData = products.filter(
+          (item) => !cartData.some((cartItem) => cartItem.title === item.title)
+        );
+
+        setData(filteredData);
+      } catch (error) {}
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    // console.log('AppContextProvider useEffect');
+    // localStorage.setItem('data', JSON.stringify(data));
     localStorage.setItem('cartData', JSON.stringify(cartData));
   }, [data, cartData]);
 
