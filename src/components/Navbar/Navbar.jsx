@@ -27,6 +27,11 @@ function Navbar() {
             Favorite
           </NavLink>
         </li>
+        <li>
+          <NavLink className="myCart" to="/admin">
+            Admin
+          </NavLink>
+        </li>
       </ul>
       <User />
     </nav>
