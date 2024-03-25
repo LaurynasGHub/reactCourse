@@ -7,9 +7,11 @@ export const AppContext = createContext();
 
 function AppContextProvider(props) {
   const [data, setData] = useState([]);
+
   const [cartData, setCartData] = useState(
     JSON.parse(localStorage.getItem('cartData')) || []
   );
+
   const [favoritesData, setFavoritesData] = useState(
     JSON.parse(localStorage.getItem('favoritesData')) || []
   );
@@ -42,7 +44,7 @@ function AppContextProvider(props) {
     // console.log('AppContextProvider useEffect');
     // localStorage.setItem('data', JSON.stringify(data));
     localStorage.setItem('cartData', JSON.stringify(cartData));
-  }, [data, cartData]);
+  }, [cartData]);
 
   useEffect(() => {
     localStorage.setItem('favoritesData', JSON.stringify(favoritesData));
