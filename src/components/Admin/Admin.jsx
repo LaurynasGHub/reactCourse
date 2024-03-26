@@ -40,8 +40,7 @@ function Admin() {
 
       if (!response.ok) throw new Error(product.error);
 
-      console.log('response', response);
-      console.log('product-', product);
+      setStatus({ value: 'success', message: 'Product created sucessfully' });
     } catch (error) {
       console.log('ERROR', error);
       setStatus({
