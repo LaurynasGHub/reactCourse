@@ -1,13 +1,16 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import './navbar.scss';
-
-//components
-import User from '../User/User';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
+//components
+import User from '../User/User';
+import AdminUser from '../AdminUser/AdminUser';
+import LogInButton from '../LogInButton/LogInButton';
+
 function Navbar() {
+  let showAdmin = true;
   return (
     <nav className="nav-container">
       <h1 className="title">My Shop</h1>
@@ -33,7 +36,11 @@ function Navbar() {
           </NavLink>
         </li>
       </ul>
-      <User />
+
+      <LogInButton />
+      {/* {showAdmin ? <AdminUser /> : <User />} */}
+      {/* <User /> */}
+      {/* <AdminUser /> */}
     </nav>
   );
 }

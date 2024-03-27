@@ -1,0 +1,48 @@
+.spinner-size {
+  height: 3rem;
+  width: 3rem;
+}
+
+.user {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: rgb(121, 214, 183);
+  text-align: center;
+  line-height: 3rem;
+  font-size: 2rem;
+}
+
+.offCanvas-header,
+.offCanvas-body {
+  background-color: var(--teal-100);
+}
+
+.adresoInfo {
+  p {
+    font-size: 1rem;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+}
+
+.kontaktiniaiDuomenys {
+  p {
+    font-size: 1rem;
+    svg {
+      margin-right: 1rem;
+    }
+  }
+  .contactInfo {
+    font-size: 1.5rem;
+    text-decoration: underline;
+  }
+}
+
+.offCanvas-header {
+  svg {
+    margin-right: 1rem;
+  }
+}
