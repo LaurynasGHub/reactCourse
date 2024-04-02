@@ -32,6 +32,8 @@ function Admin() {
         method: 'POST',
         headers: {
           'Content-type': 'Application/json',
+
+          Authorization: 'Bearer token',
         },
         body: JSON.stringify(data),
       });
