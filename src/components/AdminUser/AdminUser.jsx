@@ -11,6 +11,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { cfg } from '../../cfg/cfg';
+import useAuth from '../../hooks/useAuth';
 
 function AdminUser() {
   const [show, setShow] = useState(false);
@@ -19,6 +20,8 @@ function AdminUser() {
   const [validated, setValidated] = useState(false);
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+  const { token, setToken } = useAuth();
 
   const handleClose = () => {
     setShow(false);
@@ -56,6 +59,8 @@ function AdminUser() {
       const user = await response.json();
 
       console.log(user);
+
+      if (user?.token) setToken(user.token);
     } catch (error) {
       console.log(error.message);
       setError(true);
@@ -73,6 +78,13 @@ function AdminUser() {
             <FontAwesomeIcon icon={faUser} />
           </div>
           <Offcanvas show={show} onHide={handleClose} placement="end">
+            {token ? (
+              <Offcanvas.Header closeButton closeVariant="white">
+                <Offcanvas.Title>Welcome admin</Offcanvas.Title>
+              </Offcanvas.Header>
+            ) : (
+              <></>
+            )}
             <Offcanvas.Header closeButton closeVariant="white">
               <Offcanvas.Title>Login</Offcanvas.Title>
             </Offcanvas.Header>

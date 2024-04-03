@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 import './navbar.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import useAuth from '../../hooks/useAuth';
 
 //components
 import User from '../User/User';
@@ -10,6 +11,7 @@ import AdminUser from '../AdminUser/AdminUser';
 import LogInButton from '../LogInButton/LogInButton';
 
 function Navbar() {
+  const { token } = useAuth();
   let showAdmin = true;
   return (
     <nav className="nav-container">
@@ -30,11 +32,13 @@ function Navbar() {
             Favorite
           </NavLink>
         </li>
-        <li>
-          <NavLink className="myCart" to="/admin">
-            Admin
-          </NavLink>
-        </li>
+        {token && (
+          <li>
+            <NavLink className="myCart" to="/admin">
+              Admin
+            </NavLink>
+          </li>
+        )}
       </ul>
 
       <LogInButton />

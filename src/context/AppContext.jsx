@@ -1,4 +1,4 @@
-import React, { useState, createContext, useEffect } from 'react';
+import React, { useState, createContext, useEffect, useCallback } from 'react';
 
 import { cfg } from '../cfg/cfg';
 // import { mockData } from '../mockData';
@@ -16,27 +16,27 @@ function AppContextProvider(props) {
     JSON.parse(localStorage.getItem('favoritesData')) || []
   );
 
+  const fetchData = async () => {
+    try {
+      console.log('NODE_ENV', process.env.NODE_ENV);
+      console.log('host', cfg.API.HOST);
+
+      const response = await fetch(`${cfg.API.HOST}/product/`);
+      console.log('Response', response);
+
+      const products = await response.json();
+
+      console.log('data', products);
+
+      const filteredData = products.filter(
+        (item) => !cartData.some((cartItem) => cartItem.title === item.title)
+      );
+
+      setData(filteredData);
+    } catch (error) {}
+  };
+
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        console.log('NODE_ENV', process.env.NODE_ENV);
-        console.log('host', cfg.API.HOST);
-
-        const response = await fetch(`${cfg.API.HOST}/product/`);
-        console.log('Response', response);
-
-        const products = await response.json();
-
-        console.log('data', products);
-
-        const filteredData = products.filter(
-          (item) => !cartData.some((cartItem) => cartItem.title === item.title)
-        );
-
-        setData(filteredData);
-      } catch (error) {}
-    };
-
     fetchData();
   }, []);
 
@@ -88,6 +88,7 @@ function AppContextProvider(props) {
         data,
         setData,
         cartData,
+        fetchData,
         setCartData,
         favoritesData,
         setFavoritesData,

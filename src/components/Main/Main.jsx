@@ -32,7 +32,7 @@ function Main() {
           />
         </div>
       </div>
-
+      {data.length == 0 && <h2>No items in the shop</h2>}
       {data
         .filter((item) => {
           return item.title.toLowerCase().includes(searchValue.toLowerCase());
