@@ -1,5 +1,8 @@
 import React from 'react';
+
 import { Routes, Route } from 'react-router-dom';
+import useAuth from './hooks/useAuth';
+
 // components
 import Navbar from './components/Navbar/Navbar';
 import Main from './components/Main/Main';
@@ -10,14 +13,16 @@ import './App.scss';
 import Favorites from './components/Favorites/Favorites';
 
 function App() {
+  const { token } = useAuth();
   return (
     <>
       <Navbar />
       <Routes>
-        <Route path="/admin" element={<Admin />} />
         <Route path="/" element={<Main />} />
         <Route path="/my-cart" element={<MyCart />} />
         <Route path="/favorite" element={<Favorites />} />
+
+        {token && <Route path="/admin" element={<Admin />} />}
       </Routes>
     </>
   );

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {
   Spinner,
   Offcanvas,
@@ -11,10 +11,11 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUser } from '@fortawesome/free-solid-svg-icons';
 import { cfg } from '../../cfg/cfg';
+import { AppContext } from '../../context/AppContext';
 import useAuth from '../../hooks/useAuth';
 
 function AdminUser() {
-  const [show, setShow] = useState(false);
+  // const [show, setShow] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [validated, setValidated] = useState(false);
@@ -22,14 +23,15 @@ function AdminUser() {
   const [password, setPassword] = useState('');
 
   const { token, setToken } = useAuth();
+  const { showLogin, setShowLogin } = useContext(AppContext);
 
   const handleClose = () => {
-    setShow(false);
+    setShowLogin(false);
     setValidated(false);
     setUsername('');
     setPassword('');
   };
-  const handleShow = () => setShow(true);
+  const handleShow = () => setShowLogin(true);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -58,9 +60,8 @@ function AdminUser() {
 
       const user = await response.json();
 
-      console.log(user);
-
-      if (user?.token) setToken(user.token);
+      setToken(user.token);
+      handleClose();
     } catch (error) {
       console.log(error.message);
       setError(true);
@@ -77,7 +78,7 @@ function AdminUser() {
           <div className="user" onClick={handleShow}>
             <FontAwesomeIcon icon={faUser} />
           </div>
-          <Offcanvas show={show} onHide={handleClose} placement="end">
+          <Offcanvas show={showLogin} onHide={handleClose} placement="end">
             {token ? (
               <Offcanvas.Header closeButton closeVariant="white">
                 <Offcanvas.Title>Welcome admin</Offcanvas.Title>

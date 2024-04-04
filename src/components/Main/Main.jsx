@@ -9,7 +9,8 @@ import './main.scss';
 
 function Main() {
   const [searchValue, setSearchValue] = useState('');
-  const { data, setData, handleAddToCard } = useContext(AppContext);
+  const { data, setData, handleAddToCard, loadingProducts } =
+    useContext(AppContext);
 
   const handleSortData = (direction) => {
     const sortedData = handleSort(data, direction);
@@ -32,7 +33,8 @@ function Main() {
           />
         </div>
       </div>
-      {data.length == 0 && <h2>No items in the shop</h2>}
+      {loadingProducts && !data.length && <h2>Loading...</h2>}
+      {!data.length && !loadingProducts && <h2>No items in the shop</h2>}
       {data
         .filter((item) => {
           return item.title.toLowerCase().includes(searchValue.toLowerCase());

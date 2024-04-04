@@ -6,8 +6,9 @@ import { cfg } from '../cfg/cfg';
 export const AppContext = createContext();
 
 function AppContextProvider(props) {
+  const [showLogin, setShowLogin] = useState(false);
+  const [loadingProducts, setLoadingProducts] = useState(false);
   const [data, setData] = useState([]);
-
   const [cartData, setCartData] = useState(
     JSON.parse(localStorage.getItem('cartData')) || []
   );
@@ -18,6 +19,7 @@ function AppContextProvider(props) {
 
   const fetchData = async () => {
     try {
+      setLoadingProducts(true);
       console.log('NODE_ENV', process.env.NODE_ENV);
       console.log('host', cfg.API.HOST);
 
@@ -33,7 +35,11 @@ function AppContextProvider(props) {
       );
 
       setData(filteredData);
-    } catch (error) {}
+    } catch (error) {
+      console.log('error:', error.message);
+    } finally {
+      setLoadingProducts(false);
+    }
   };
 
   useEffect(() => {
@@ -88,10 +94,13 @@ function AppContextProvider(props) {
         data,
         setData,
         cartData,
+        showLogin,
+        setShowLogin,
         fetchData,
         setCartData,
         favoritesData,
         setFavoritesData,
+        loadingProducts,
         handleAddToCard,
         handleRemoveFromCard,
         handleAddToFavorites,
